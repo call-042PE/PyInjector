@@ -9,4 +9,5 @@ The file as to be in the same folder of the software you want to inject it.
 This project is made for reverse-engineer and malware analyst, the main aspect of this project is to reverse-engineer any python script/executable easily.   
 I put some usefull script in the src/ folder that can be used to reverse-engineer any script (even with pyarmor).
 
-##Compatibilities
+## Compatibilities
+PyInjector is compatible with x32 and x64, python 3.7,3.8,3.9.
