@@ -12,3 +12,6 @@ I put some usefull script in the src/ folder that can be used to reverse-enginee
 
 ## Compatibilities
 PyInjector is compatible with x32 and x64, python 3.7,3.8,3.9.
+
+## Exemple
+In this [video](https://youtu.be/NkFs7A0q4DM) im unpacking a function in a pyarmor protected script with PyInjector.
