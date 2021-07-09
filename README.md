@@ -2,7 +2,7 @@
 PyInjector - Inject Python code into python process.
 
 ## How to use it ?
-Simply write the you want to inject into a file called code.py.   
+Simply write the code you want to inject into a file called code.py.   
 The file as to be in the same folder of the software you want to inject it.   
 You can also write it directly in the dll and recompile it.
 
