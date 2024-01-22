@@ -9,18 +9,19 @@ _PyRun_SimpleStringFlags PyRun_SimpleStringFlags;
 void SDK::InitCPython()
 {
     HMODULE hPython = 0x0;
-    if (GetModuleHandleA("Python312.dll"))
-        hPython = GetModuleHandleA("Python312.dll");
-    else if (GetModuleHandleA("Python311.dll"))
-        hPython = GetModuleHandleA("Python311.dll");
-    else if(GetModuleHandleA("Python310.dll"))
-        hPython = GetModuleHandleA("Python310.dll");
-    else if (GetModuleHandleA("Python39.dll"))
-        hPython = GetModuleHandleA("Python39.dll");
-    else if (GetModuleHandleA("Python38.dll"))
-        hPython = GetModuleHandleA("Python38.dll");
-    else if (GetModuleHandleA("Python37.dll"))
-        hPython = GetModuleHandleA("Python37.dll");
+    const char* pythonVersions[] = { "37", "38", "39", "310", "311", "312" };
+    const int numVersions = sizeof(pythonVersions) / sizeof(pythonVersions[0]);
+
+    for (int i = 0; i < numVersions; ++i) {
+        char pythonDllName[15];
+        snprintf(pythonDllName, sizeof(pythonDllName), "Python%s.dll", pythonVersions[i]);
+
+        hPython = GetModuleHandleA(pythonDllName);
+        
+        if (hPython)
+            break;
+    }
+
     Py_SetProgramName = (_Py_SetProgramName)(GetProcAddress(hPython, "Py_SetProgramName"));
     PyEval_InitThreads = (_PyEval_InitThreads)(GetProcAddress(hPython, "PyEval_InitThreads"));
     PyGILState_Ensure = (_PyGILState_Ensure)(GetProcAddress(hPython, "PyGILState_Ensure"));
