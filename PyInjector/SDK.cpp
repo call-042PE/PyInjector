@@ -9,7 +9,13 @@ _PyRun_SimpleStringFlags PyRun_SimpleStringFlags;
 void SDK::InitCPython()
 {
     HMODULE hPython = 0x0;
-    if (GetModuleHandleA("Python39.dll"))
+    if (GetModuleHandleA("Python312.dll"))
+        hPython = GetModuleHandleA("Python312.dll");
+    else if (GetModuleHandleA("Python311.dll"))
+        hPython = GetModuleHandleA("Python311.dll");
+    else if(GetModuleHandleA("Python310.dll"))
+        hPython = GetModuleHandleA("Python310.dll");
+    else if (GetModuleHandleA("Python39.dll"))
         hPython = GetModuleHandleA("Python39.dll");
     else if (GetModuleHandleA("Python38.dll"))
         hPython = GetModuleHandleA("Python38.dll");
