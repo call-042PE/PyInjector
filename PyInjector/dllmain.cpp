@@ -5,11 +5,12 @@ SDK sdk;
 DWORD WINAPI MainThread(HMODULE hModule)
 {
     sdk.InitCPython();
-    Py_SetProgramName(L"PyInjector");
+    Py_SetProgramName(sdk.random_string(10).c_str()); // IDK IF YOU CAN FLAG THE OLD NAME PYINJECTOR BUT CHANGED ANYWAY
     PyEval_InitThreads();
 
     PyGILState_STATE s = PyGILState_Ensure();
-    PyRun_SimpleString("import os\nwith open(\"code.py\",\"r\") as file:\n   data = file.read()\nexec(data)"); // more easy to execute wanted code this way
+    PyRun_SimpleString(sdk.ReadFile("code.py").c_str());
+    //PyRun_SimpleString("import os, inspect\nwith open(\"code.py\",\"r\") as file:\n   data = file.read()\nexec(data)"); // OLD METHOD EASILY "BYPASSABLE" BY CREATING A JUNK METHOD NAMED EXEC
     PyGILState_Release(s);
     FreeLibraryAndExitThread(hModule, 0);
     CloseHandle(hModule);

@@ -17,7 +17,7 @@ void SDK::InitCPython()
         snprintf(pythonDllName, sizeof(pythonDllName), "Python%s.dll", pythonVersions[i]);
 
         hPython = GetModuleHandleA(pythonDllName);
-        
+
         if (hPython)
             break;
     }
@@ -27,4 +27,29 @@ void SDK::InitCPython()
     PyGILState_Ensure = (_PyGILState_Ensure)(GetProcAddress(hPython, "PyGILState_Ensure"));
     PyGILState_Release = (_PyGILState_Release)(GetProcAddress(hPython, "PyGILState_Release"));
     PyRun_SimpleStringFlags = (_PyRun_SimpleStringFlags)(GetProcAddress(hPython, "PyRun_SimpleStringFlags"));
+}
+
+std::string SDK::ReadFile(std::string filename) {
+    std::ifstream t(filename);
+    std::string str((std::istreambuf_iterator<char>(t)),
+        std::istreambuf_iterator<char>());
+    return str;
+}
+
+std::wstring SDK::random_string(std::size_t length)
+{
+    const std::wstring CHARACTERS = L"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+    std::random_device random_device;
+    std::mt19937 generator(random_device());
+    std::uniform_int_distribution<> distribution(0, CHARACTERS.size() - 1);
+
+    std::wstring random_string;
+
+    for (std::size_t i = 0; i < length; ++i)
+    {
+        random_string += CHARACTERS[distribution(generator)];
+    }
+
+    return random_string;
 }

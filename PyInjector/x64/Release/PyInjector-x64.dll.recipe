@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\jacks\source\repos\PyInjector\x64\Release\PyInjector.dll</FullPath>
+      <FullPath>C:\Users\jacks\source\repos\PyInjector\x64\Release\PyInjector-x64.dll</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

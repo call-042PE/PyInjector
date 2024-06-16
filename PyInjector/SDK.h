@@ -2,11 +2,14 @@
 #include <iostream>
 #include <Windows.h>
 #include <fstream>
+#include <random>
 
 class SDK
 {
 public:
 	void InitCPython();
+	std::string ReadFile(std::string filename);
+	std::wstring random_string(std::size_t length);
 };
 
 typedef
